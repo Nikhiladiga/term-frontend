@@ -1,0 +1,1 @@
+export const socket_url = 'http://localhost:2000';

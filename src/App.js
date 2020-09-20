@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Terminal from './components/Terminal';
+import Switch from 'react-switch';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+
+  state = {
+    checked:true
+  }
+
+  root = document.documentElement;
+
+  handleModeChange = (e)=>{
+    this.setState({
+      checked:!this.state.checked
+    },()=>{
+      if(this.state.checked){
+        this.root.style.setProperty('--bg-color','#1D1D1D');
+      }else{
+        this.root.style.setProperty('--bg-color','#fff');
+      }
+    });
+  }
+
+  render(){
+    return (
+      <div className="App">
+          <Switch onChange={this.handleModeChange} checked={this.state.checked}/>
+          <Terminal/>
+      </div>
+    );   
+  }
 }
+
 
 export default App;
